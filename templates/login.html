@@ -4,6 +4,27 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+  /* Add CSS styles to position the eye icon inside the input field */
+  .password-container {
+            position: relative;
+        }
+
+ 
+
+        #password {
+            padding-right: 30px; /* Adjust the padding to make space for the eye icon */
+        }
+
+ 
+
+        #togglePassword {
+            position: absolute;
+            left: 250px; /* Adjust the positioning */
+            top: 55%; /* Adjust the positioning */
+            transform: translateY(-50%); /* Adjust the positioning */
+            cursor: pointer;
+        }
+
         body {
             background: #555
         }
@@ -13,7 +34,7 @@
             background-color: azure;
             margin: auto;
             position: absolute;
-            top: 40%;
+            top: 45%;
             right: 30%;
             left: 30%;
             transform: translate(0, -50%);
@@ -26,37 +47,117 @@
 <div class="content">
     <div style="text-align:center">
         <h1 style="color:rgb(205, 108, 250);">Login Page</h1>
-        <form method="POST" action="/login"></form>
+        <form method="POST" action="/login">
             <label for="First Name"><b>First Name:</b></label>
             <input type="text" name="First Name" required placeholder="Your name..."><br/><br/>
 
             <label for="Last Name"><b>Last Name:</b></label>
             <input type="text" name="Last Name" required placeholder="Your last name..."><br/><br/>
-
+             
+            <form>
             <label for="E-mail id"><b>E-mail id:</b></label>
-            <input type="text" id="email" name="E-mail" step="3" required placeholder="enter your email-id..."><br/><br/>
+            <input type="text" id="email" name="E-mail" required placeholder="enter your email-id..." onblur="validateEmail()">
+            <p id="emailMessage" style="color: red;"></p></form>
 
-            <label for="password"><b>Password:</b></label>
-            <input type="password" name="password" required placeholder="enter password..."><br/><br/>
+            <form>
+            <label for="password" class="password-container"><b>Password:</b>
+            <input type="password" id="password" name="password" required placeholder="enter password..." onblur="validatePassword()">
+            <span id="togglePassword" onclick="togglePasswordVisibility()">&#x1F441;</span>
+            </label>
+            <p id="passwordMessage" style="color: red;"></p>
 
-            
             <label for="repeat password"><b>Repeat Password:</b></label>
-            <input type="repeat password" name="repeat password" required placeholder="repeat password"><br/><br/>
-           
+            <input type="password" name="repeat password" required placeholder="repeat password"><br/><br/>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <input type="file" name="image"/>
                 <input type="submit"/>
             </form>
-        </div>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </form>
+        </form>
+    </div>
+    <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
 </div>
+
+<script>
+
+    function validateEmail() {
+
+        const emailInput = document.getElementById("email");
+
+        const email = emailInput.value;
+
+        const emailMessage = document.getElementById("emailMessage");
+
+
+
+        if (email.indexOf("@") === -1 && email.indexOf(".com") === -1) {
+
+        emailInput.setCustomValidity("The '@' and '.com' symbol is mandatory in the email address.");}
+
+        else if (email.indexOf("@") === -1){
+
+        emailInput.setCustomValidity("The '@' symbol is mandatory in the email address.");}
+
+        else if (email.indexOf(".com")=== -1){
+
+        emailInput.setCustomValidity("The '.com' symbol is mandatory in the email address.");
+
+
+
+        } else {
+
+            emailInput.setCustomValidity(""); // Clear the custom validation message.
+
+            emailMessage.innerText = "email is valid";
+
+        }
+
+    }
+
+</script>
+
+
+<script>
+    function validatePassword() {
+        const passwordInput = document.getElementById("password");
+        const password = passwordInput.value;
+        const passwordMessage = document.getElementById("passwordMessage");
+
+
+
+        if (password.length < 8) {
+            passwordInput.setCustomValidity("Password should be at least 8 characters long.");
+        } else if (!/[A-Z]/.test(password)) {
+            passwordInput.setCustomValidity("Password should contain at least one capital letter.");
+        } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)) {
+            passwordInput.setCustomValidity("Password should contain at least one special character.");
+        } else {
+            passwordInput.setCustomValidity(""); // Clear the custom validation message.
+            passwordMessage.innerText = "Password is valid.";
+        }
+    }
+
+
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("password");
+
+
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
+
+
 </body>
 </html>
+
 
 
 
