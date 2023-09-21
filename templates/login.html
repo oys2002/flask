@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #555
+        }
+
+        .content {
+            border: 2px solid;
+            background-color: azure;
+            margin: auto;
+            position: absolute;
+            top: 40%;
+            right: 30%;
+            left: 30%;
+            transform: translate(0, -50%);
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body style="background-color: rgba(255, 224, 244, 0.963);">
+<div class="content">
+    <div style="text-align:center">
+        <h1 style="color:rgb(205, 108, 250);">Login Page</h1>
+        <h1>Email Validation</h1>
+    <form method="POST" action="/login">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" onblur="validateEmail()">
+        <p id="emailMessage" style="color: red;"></p>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function validateEmail() {
+            // JavaScript email validation code as in your previous example
+        }
+    </script>
+            <label for="First Name"><b>First Name:</b></label>
+            <input type="text" name="First Name" required placeholder="Your name..."><br/><br/>
+
+            <label for="Last Name"><b>Last Name:</b></label>
+            <input type="text" name="Last Name" required placeholder="Your last name..."><br/><br/>
+
+            <label for="E-mail id"><b>E-mail id:</b></label>
+            <input type="text" id="email" name="E-mail" step="3" required placeholder="enter your email-id..."><br/><br/>
+
+            <label for="password"><b>Password:</b></label>
+            <input type="password" name="password" required placeholder="enter password..."><br/><br/>
+
+            
+            <label for="repeat password"><b>Repeat Password:</b></label>
+            <input type="repeat password" name="repeat password" required placeholder="repeat password"><br/><br/>
+           
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image"/>
+                <input type="submit"/>
+            </form>
+        </div>
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+
+        
